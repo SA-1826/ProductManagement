@@ -33,7 +33,7 @@ public class UserLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("user-login-form.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/user-login-form.jsp");
 		rd.forward(request, response);
 	}
 
@@ -56,13 +56,13 @@ public class UserLoginServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "ログインに失敗しました。時間をおいて再度お試しください。");
-			RequestDispatcher rd = request.getRequestDispatcher("user-login-form.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/user-login-form.jsp");
 			rd.forward(request, response);
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "データベース接続に失敗しました。時間をおいて再度お試しください。");
-			RequestDispatcher rd = request.getRequestDispatcher("user-login-form.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/user-login-form.jsp");
 			rd.forward(request, response);
 		}
 		
@@ -75,12 +75,12 @@ public class UserLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
 			
-			response.sendRedirect("menu.jsp");
+			response.sendRedirect("menu-servlet");
 			
 		} else {
 			// 認証失敗
 			request.setAttribute("errorMessage", "メールアドレスまたはパスワードが違います。");
-			RequestDispatcher rd = request.getRequestDispatcher("user-login-form.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/user-login-form.jsp");
 			rd.forward(request, response);
 		}
 	}

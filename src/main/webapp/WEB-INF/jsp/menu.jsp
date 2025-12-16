@@ -8,6 +8,12 @@
 </head>
 <body>
 	<h1>商品管理メニュー</h1>
+	<form action="product-list-servlet" method="GET">
+		<input type="submit" value="商品一覧">
+	</form>
+	<form action="product-register-servlet" method="GET">
+		<input type="submit" value="新規商品登録">
+	</form>
 	<br>
 	<br>
 	<form action="user-logout-servlet" method="POST">

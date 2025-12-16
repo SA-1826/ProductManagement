@@ -39,7 +39,7 @@ public class LoginCheckFilter implements Filter {
 		if (user == null) {
 			HttpSession sessionMessage = req.getSession();
 			sessionMessage.setAttribute("loginError", "ログインが必要です。");
-			res.sendRedirect("user-login-form.jsp");
+			res.sendRedirect("user-login-servlet");
 			return;
 		}
 		

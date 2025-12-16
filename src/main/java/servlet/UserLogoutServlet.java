@@ -44,7 +44,7 @@ public class UserLogoutServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("logoutMessage", "ログアウトしました。");
-		RequestDispatcher rd = request.getRequestDispatcher("user-login-form.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/user-login-form.jsp");
 		rd.forward(request, response);
 	}
 
