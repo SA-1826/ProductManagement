@@ -76,4 +76,25 @@ public class ProductDAO {
 		
 		return processingNumber;
 	}
+	
+	/**
+	 * 商品IDをキーにして商品情報を削除します
+	 * @param produtId 商品ID
+	 * @return 処理件数
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public int delete(String productId) throws SQLException, ClassNotFoundException {
+		int processingNumber = 0;
+		String sql = "DELETE FROM products WHERE product_id = ?";
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			pstmt.setString(1, productId);
+			processingNumber = pstmt.executeUpdate();
+		}
+		
+		return processingNumber;
+	}
 }

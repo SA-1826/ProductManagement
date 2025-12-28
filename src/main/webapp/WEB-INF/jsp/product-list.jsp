@@ -10,11 +10,16 @@
 	<h1>商品一覧</h1>
 	<%
 		String success = (String) session.getAttribute("flashMessage");
+		String error = (String) request.getAttribute("errorMessage");
 		if (success != null) {
 	%>
 		<p style="color:green;"><%= success %></p>
 	<%
 			session.removeAttribute("flashMessage");
+		} else if (error != null) {
+	%>
+		<p style="color:red;"><%= error %></p>
+	<%
 		}
 	%>
 	
@@ -30,6 +35,7 @@
 			<th>在庫数</th>
 			<th>商品説明</th>
 			<th>カテゴリID</th>
+			<th></th>
 		</tr>
 		<%
 			for (ProductBean product : productList) {
@@ -41,6 +47,12 @@
 			<td><%= product.getQuantity() %></td>
 			<td><%= product.getDescription() %></td>
 			<td><%= product.getCategoryId() %></td>
+			<td>
+				<form action="product-delete-servlet" method="POST">
+					<input type="hidden" name="productId" value="<%= product.getProductId() %>">
+					<input type="submit" value="削除" onclick="return Delete_Dialog()">
+				</form>
+			</td>
 		</tr>
 		<%
 			}
@@ -55,4 +67,14 @@
 		<input type="submit" value="商品管理メニュー画面に戻る">
 	</form>
 </body>
+<script type="text/javascript">
+	function Delete_Dialog() {
+		var res = confirm("選択した商品を本当に削除しますか？");
+		if (res) {
+			return true;
+		} else {
+			return false;
+		};
+	};
+</script>
 </html>
