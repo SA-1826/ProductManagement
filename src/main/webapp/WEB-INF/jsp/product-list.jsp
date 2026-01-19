@@ -36,6 +36,7 @@
 			<th>商品説明</th>
 			<th>カテゴリID</th>
 			<th></th>
+			<th></th>
 		</tr>
 		<%
 			for (ProductBean product : productList) {
@@ -51,6 +52,12 @@
 				<form action="product-delete-servlet" method="POST">
 					<input type="hidden" name="productId" value="<%= product.getProductId() %>">
 					<input type="submit" value="削除" onclick="return Delete_Dialog()">
+				</form>
+			</td>
+			<td>
+				<form action="product-edit-servlet" method="GET">
+					<input type="hidden" name="productId" value="<%= product.getProductId() %>">
+					<input type="submit" value="編集">
 				</form>
 			</td>
 		</tr>

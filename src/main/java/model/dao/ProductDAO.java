@@ -97,4 +97,67 @@ public class ProductDAO {
 		
 		return processingNumber;
 	}
+	
+	/**
+	 * 商品IDをキーにして商品情報を取得します
+	 * @param productID 商品ID
+	 * @return 商品オブジェクト
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public ProductBean select(String productId) throws SQLException, ClassNotFoundException {
+		ProductBean product = new ProductBean();
+		String sql = "SELECT * FROM products WHERE product_id = ?";
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			pstmt.setString(1, productId);
+			ResultSet rs = pstmt.executeQuery();
+			// 結果セットを操作して商品情報を取得
+			if (rs.next()) {
+				product.setProductId(rs.getString("product_id"));
+				product.setProductName(rs.getString("product_name"));
+				product.setPrice(rs.getInt("price"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setDescription(rs.getString("description"));
+				product.setCategoryId(rs.getString("category_id"));
+				
+			}
+		}
+		
+		return product;
+	}
+	
+	/**
+	 * 指定された内容の商品情報を更新します
+	 * @param product 商品オブジェクト
+	 * @return 処理件数
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public int update(ProductBean product) throws SQLException, ClassNotFoundException {
+		int processingNumber = 0;
+		String sql = "UPDATE products SET product_name = ?, price = ?, quantity = ?, description = ?, category_id = ? WHERE product_id = ?";
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			String productId = product.getProductId();
+			String productName = product.getProductName();
+			int price = product.getPrice();
+			int quantity = product.getQuantity();
+			String description = product.getDescription();
+			String categoryId = product.getCategoryId();
+			
+			pstmt.setString(1, productName);
+			pstmt.setInt(2, price);
+			pstmt.setInt(3, quantity);
+			pstmt.setString(4, description);
+			pstmt.setString(5, categoryId);
+			pstmt.setString(6, productId);
+			
+			processingNumber = pstmt.executeUpdate();
+		}
+		
+		return processingNumber;
+	}
 }
