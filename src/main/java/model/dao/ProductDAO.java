@@ -19,24 +19,26 @@ public class ProductDAO {
 	 */
 	public List<ProductBean> selectAll() throws SQLException, ClassNotFoundException {
 		List<ProductBean> productList = new ArrayList<ProductBean>();
-		
+		String sql = "SELECT p.product_id, p.product_name, p.price, p.quantity, p.description, c.category_name FROM products p INNER JOIN categories c ON p.category_id = c.category_id ORDER BY p.product_id ASC";
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM products")) {
+				ResultSet rs = stmt.executeQuery(sql)) {
+			
 			while (rs.next()) {
+				
 				String productId = rs.getString("product_id");
 				String productName = rs.getString("product_name");
 				int price = rs.getInt("price");
 				int quantity = rs.getInt("quantity");
 				String description = rs.getString("description");
-				String categoryId = rs.getString("category_id");
+				String categoryName = rs.getString("category_name");
 				ProductBean product = new ProductBean();
 				product.setProductId(productId);
 				product.setProductName(productName);
 				product.setPrice(price);
 				product.setQuantity(quantity);
 				product.setDescription(description);
-				product.setCategoryId(categoryId);
+				product.setCategoryName(categoryName);
 				productList.add(product);
 			}
 		}

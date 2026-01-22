@@ -32,6 +32,11 @@ public class ProductBean {
 	private String categoryId;
 	
 	/**
+	 * カテゴリ名（カテゴリテーブルを結合して取得）
+	 */
+	private String categoryName;
+	
+	/**
 	 * ProductBeanを構築します
 	 */
 	public ProductBean() {
@@ -132,5 +137,21 @@ public class ProductBean {
 	 */
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	/**
+	 * フィールドcategoryNameの値を返します
+	 * @return カテゴリ名
+	 */
+	public String getCategoryName() {
+		return categoryName;
+	}
+	
+	/**
+	 * フィールドcategoryNameの値を設定します
+	 * @param categoryName カテゴリ名
+	 */
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }

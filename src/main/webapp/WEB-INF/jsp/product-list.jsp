@@ -34,7 +34,7 @@
 			<th>単価</th>
 			<th>在庫数</th>
 			<th>商品説明</th>
-			<th>カテゴリID</th>
+			<th>カテゴリ名</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -47,7 +47,7 @@
 			<td><%= product.getPrice() %></td>
 			<td><%= product.getQuantity() %></td>
 			<td><%= product.getDescription() %></td>
-			<td><%= product.getCategoryId() %></td>
+			<td><%= product.getCategoryName() %></td>
 			<td>
 				<form action="product-delete-servlet" method="POST">
 					<input type="hidden" name="productId" value="<%= product.getProductId() %>">

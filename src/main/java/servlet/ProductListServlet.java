@@ -33,13 +33,16 @@ public class ProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 商品リストオブジェクトを生成
 		List<ProductBean> productList = null;
 		
 		ProductDAO dao = new ProductDAO();
 		try {
+			// 商品リスト情報を取得
 			productList = dao.selectAll();
-			
+			// リクエストスコープに商品リストを設定
 			request.setAttribute("productList", productList);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/product-list.jsp");
 			rd.forward(request, response);
 			
