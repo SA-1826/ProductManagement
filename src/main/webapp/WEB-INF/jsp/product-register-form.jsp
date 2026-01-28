@@ -19,14 +19,14 @@
 		</div>
 	</c:if>
 	<form action="product-register-servlet" method="POST">
-		商品ID：<input type="text" name="productId" value="${product.productId}" required><br>
-		商品名：<input type="text" name="productName" value="${product.productName}" required><br>
-		単価　：<input type="number" name="price" value="${param.price}" required><br>
-		在庫数：<input type="number" name="quantity" value="${param.quantity}" required><br>
+		商品ID：<input type="text" name="productId" value="${product.productId}"><br>
+		商品名：<input type="text" name="productName" value="${product.productName}"><br>
+		単価　：<input type="number" name="price" value="${param.price}"><br>
+		在庫数：<input type="number" name="quantity" value="${param.quantity}"><br>
 		商品説明：<br>
 		<textarea name="description" rows="10" cols="50">${product.description}</textarea><br>
-		カテゴリID：
-		<select name="categoryId" required>
+		カテゴリ名：
+		<select name="categoryId">
 			<option value="">-- 選択してください --</option>
 			<c:forEach var="category" items="${categoryList}">
 				<option value="${category.categoryId}">${category.categoryName}</option>

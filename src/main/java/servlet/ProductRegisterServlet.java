@@ -105,7 +105,7 @@ public class ProductRegisterServlet extends HttpServlet {
 		}
 		
 		if (categoryId == null || categoryId.trim().isEmpty()) {
-			errors.put("categoryId", "カテゴリIDは必須です");
+			errors.put("categoryId", "カテゴリ名は必須です");
 		}
 		
 		if (!errors.isEmpty()) {
@@ -160,7 +160,7 @@ public class ProductRegisterServlet extends HttpServlet {
 				
 				response.sendRedirect("product-list-servlet");
 				
-				// 登録内容確認画面への遷移を入れるなら下記利用
+				// 登録内容確認画面への遷移を入れるなら下記利用　※今回は利用なしproduct-register.jspファイル削除済み
 				// request.setAttribute("processingNumber", processingNumber);
 				// RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/product-register.jsp");
 				// rd.forward(request, response);

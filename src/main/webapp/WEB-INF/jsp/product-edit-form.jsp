@@ -35,7 +35,7 @@
 		在庫数：<input type="number" name="quantity" value="<jsp:getProperty name="product" property="quantity"/>"><br>
 		商品説明：<br>
 		<textarea name="description" rows="10" cols="50"><jsp:getProperty name="product" property="description"/></textarea><br>
-		カテゴリID：
+		カテゴリ名：
 		<select name="categoryId">
 			<c:forEach var="category" items="${categoryList }">
 				<option value="${category.categoryId}" <c:if test="${category.categoryId == product.categoryId}">selected</c:if>>

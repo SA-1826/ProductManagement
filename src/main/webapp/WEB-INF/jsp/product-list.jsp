@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.List, model.entity.ProductBean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,15 @@
 		}
 	%>
 	
+	<form action="product-list-servlet" method="POST">
+		<select name="categoryId">
+			<option value="">カテゴリで絞り込み</option>
+			<c:forEach var="category" items="${categoryList}">
+				<option value="${category.categoryId}">${category.categoryName}</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="絞り込む">
+	</form>
 	<%
 		List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList");
 	%>
