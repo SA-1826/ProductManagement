@@ -80,8 +80,8 @@
 		<input type="submit" value="新規商品登録">
 	</form>
 	<br>
-	<form action="menu-servlet" method="GET">
-		<input type="submit" value="商品管理メニュー画面に戻る">
+	<form action="user-logout-servlet" method="POST">
+		<input type="submit" value="ログアウト">
 	</form>
 </body>
 <script type="text/javascript">

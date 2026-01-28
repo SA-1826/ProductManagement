@@ -75,7 +75,7 @@ public class UserLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
 			
-			response.sendRedirect("menu-servlet");
+			response.sendRedirect("product-list-servlet");
 			
 		} else {
 			// 認証失敗
