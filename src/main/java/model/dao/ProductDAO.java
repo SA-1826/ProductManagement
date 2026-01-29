@@ -19,7 +19,7 @@ public class ProductDAO {
 	 */
 	public List<ProductBean> selectAll() throws SQLException, ClassNotFoundException {
 		List<ProductBean> productList = new ArrayList<ProductBean>();
-		String sql = "SELECT p.product_id, p.product_name, p.price, p.quantity, p.description, c.category_name FROM products p INNER JOIN categories c ON p.category_id = c.category_id ORDER BY p.product_id ASC";
+		String sql = "SELECT p.product_id, p.product_name, p.price, p.quantity, p.description, p.category_id, c.category_name FROM products p INNER JOIN categories c ON p.category_id = c.category_id ORDER BY p.product_id ASC";
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
@@ -31,6 +31,7 @@ public class ProductDAO {
 				int price = rs.getInt("price");
 				int quantity = rs.getInt("quantity");
 				String description = rs.getString("description");
+				String categoryId = rs.getString("category_id");
 				String categoryName = rs.getString("category_name");
 				ProductBean product = new ProductBean();
 				product.setProductId(productId);
@@ -38,6 +39,7 @@ public class ProductDAO {
 				product.setPrice(price);
 				product.setQuantity(quantity);
 				product.setDescription(description);
+				product.setCategoryId(categoryId);
 				product.setCategoryName(categoryName);
 				productList.add(product);
 			}
@@ -54,7 +56,7 @@ public class ProductDAO {
 	 */
 	public List<ProductBean> selectAllByCategoryId(String categoryId) throws SQLException, ClassNotFoundException {
 		List<ProductBean> productList = new ArrayList<ProductBean>();
-		String sql = "SELECT p.product_id, p.product_name, p.price, p.quantity, p.description, c.category_name FROM products p INNER JOIN categories c ON p.category_id = c.category_id WHERE p.category_id = ? ORDER BY p.product_id ASC";
+		String sql = "SELECT p.product_id, p.product_name, p.price, p.quantity, p.description, p.category_id, c.category_name FROM products p INNER JOIN categories c ON p.category_id = c.category_id WHERE p.category_id = ? ORDER BY p.product_id ASC";
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
@@ -68,6 +70,7 @@ public class ProductDAO {
 				int price = rs.getInt("price");
 				int quantity = rs.getInt("quantity");
 				String description = rs.getString("description");
+				String pCategoryId = rs.getString("category_id");
 				String categoryName = rs.getString("category_name");
 				ProductBean product = new ProductBean();
 				product.setProductId(productId);
@@ -75,6 +78,7 @@ public class ProductDAO {
 				product.setPrice(price);
 				product.setQuantity(quantity);
 				product.setDescription(description);
+				product.setCategoryId(pCategoryId);
 				product.setCategoryName(categoryName);
 				productList.add(product);
 			}
